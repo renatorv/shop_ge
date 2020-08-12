@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:shop_ge/models/product.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_ge/providers/cart.dart';
+import 'package:shop_ge/providers/product.dart';
 import 'package:shop_ge/utils/app_routes.dart';
 
 class ProductItem extends StatelessWidget {
-  final Product product;
-
-  ProductItem(this.product);
-
   @override
   Widget build(BuildContext context) {
+    final Product product = Provider.of<Product>(context, listen: false);
+    // listen: false, deve ser usado quando for utilizar atributos finais, ex.: titulo, descricao
+    // Consumer é um widget, assim pode-se utilizar ele em uma parte especifica do código.
+
+    final Cart cart = Provider.of(context, listen: false);
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
@@ -26,10 +30,16 @@ class ProductItem extends StatelessWidget {
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black87,
-          leading: IconButton(
-            icon: Icon(Icons.favorite),
-            color: Theme.of(context).accentColor,
-            onPressed: () {},
+          leading: Consumer<Product>(
+            builder: (ctx, productItem, _) => IconButton(
+              icon: Icon(productItem.isFavorite
+                  ? Icons.favorite
+                  : Icons.favorite_border),
+              color: Theme.of(context).accentColor,
+              onPressed: () {
+                productItem.toggleFavorite();
+              },
+            ),
           ),
           title: Text(
             product.title,
@@ -38,7 +48,11 @@ class ProductItem extends StatelessWidget {
           trailing: IconButton(
             icon: Icon(Icons.shopping_cart),
             color: Theme.of(context).accentColor,
-            onPressed: () {},
+            onPressed: () {
+              cart.addItem(product);
+
+              print(cart.itemCount);
+            },
           ),
         ),
       ),
