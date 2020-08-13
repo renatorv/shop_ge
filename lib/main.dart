@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shop_ge/providers/cart.dart';
 import 'package:shop_ge/providers/products.dart';
 import 'package:shop_ge/utils/app_routes.dart';
+import 'package:shop_ge/views/cart_screen.dart';
 import 'package:shop_ge/views/product_detail_screen.dart';
 import 'package:shop_ge/views/products_overview_screen.dart';
 
@@ -31,10 +32,11 @@ class MyApp extends StatelessWidget {
         home: ProductsOverviewScreen(),
         routes: {
           AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailScreen(),
+          AppRoutes.CART: (ctx) => CartScreen(),
         },
       ),
     );
   }
 }
 
-//terminei aula 220 aos 10 min
+//terminei aula 224
