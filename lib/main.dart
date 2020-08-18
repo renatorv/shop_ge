@@ -4,8 +4,11 @@ import 'package:shop_ge/providers/cart.dart';
 import 'package:shop_ge/providers/products.dart';
 import 'package:shop_ge/utils/app_routes.dart';
 import 'package:shop_ge/views/cart_screen.dart';
+import 'package:shop_ge/views/orders_screen.dart';
 import 'package:shop_ge/views/product_detail_screen.dart';
 import 'package:shop_ge/views/products_overview_screen.dart';
+
+import 'providers/orders.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +23,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => new Cart(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => new Orders(),
+        ),
       ],
       child: MaterialApp(
         title: 'Minha Loja',
@@ -29,14 +35,16 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.purple,
           fontFamily: 'Lato',
         ),
-        home: ProductsOverviewScreen(),
+        // home: ProductsOverviewScreen(),
         routes: {
           AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailScreen(),
           AppRoutes.CART: (ctx) => CartScreen(),
+          AppRoutes.ORDERS: (ctx) => OrdersScreen(),
+          AppRoutes.HOME: (ctx) => ProductsOverviewScreen(),
         },
       ),
     );
   }
 }
 
-//terminei aula 224
+//terminei aula 229

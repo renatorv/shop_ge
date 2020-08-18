@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_ge/providers/product.dart';
+import 'package:shop_ge/widgets/app_drawer.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   @override
@@ -11,6 +12,35 @@ class ProductDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(product.title),
       ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 300,
+              width: double.infinity,
+              child: Image.network(
+                product.imageUrl,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'R\$ ${product.price}',
+              style: TextStyle(color: Colors.grey, fontSize: 20),
+            ),
+            SizedBox(height: 10),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              width: double.infinity,
+              child: Text(
+                product.description,
+                textAlign: TextAlign.center,
+              ),
+            )
+          ],
+        ),
+      ),
+      drawer: AppDrawer(),
     );
   }
 }

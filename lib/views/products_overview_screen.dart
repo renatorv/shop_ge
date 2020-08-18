@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:shop_ge/providers/cart.dart';
 import 'package:shop_ge/providers/products.dart';
 import 'package:shop_ge/utils/app_routes.dart';
+import 'package:shop_ge/widgets/app_drawer.dart';
 import 'package:shop_ge/widgets/badge.dart';
 import 'package:shop_ge/widgets/product_grid.dart';
 
@@ -50,6 +51,7 @@ class ProductsOverviewScreen extends StatelessWidget {
         ],
       ),
       body: ProductGrid(),
+      drawer: AppDrawer(),
     );
   }
 }
